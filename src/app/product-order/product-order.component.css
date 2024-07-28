@@ -1,0 +1,22 @@
+.product-order {
+  text-align: center;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  margin: auto;
+}
+
+th,td {
+  padding: 10px;
+  text-align: left;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  margin: 10px;
+}

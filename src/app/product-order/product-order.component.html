@@ -1,0 +1,63 @@
+<div class="product-order">
+  <h1>Product Order List</h1>
+  <table>
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Add</th>
+    </tr>
+    <tr *ngFor="let order of orderList; let i = index">
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label *ngIf="!order.product">Choose Product</mat-label>
+          <mat-select [(ngModel)]="order.product">
+            <mat-option *ngFor="let product of products" [value]="product">{{
+              product
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label *ngIf="order.quantity === null">Choose Quantity</mat-label>
+          <mat-select [(ngModel)]="order.quantity">
+            <mat-option *ngFor="let qty of [0, 1, 2, 3, 4, 5]" [value]="qty">{{
+              qty
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="addRow()"
+          [disabled]="!isRowValid(order)"
+        >
+          ADD
+        </button>
+      </td>
+    </tr>
+  </table>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="showOrder()"
+    [disabled]="!isOrderValid"
+  >
+    Show Order
+  </button>
+
+  <div *ngIf="showOrderButton">
+    <h2>Show Order</h2>
+    <table>
+      <tr *ngFor="let order of orderList">
+        <td>{{ order.product }}</td>
+        <td>{{ order.quantity }}</td>
+      </tr>
+    </table>
+    <button mat-raised-button color="accent" (click)="readOrder()">
+      What is my Order?
+    </button>
+  </div>
+</div>
